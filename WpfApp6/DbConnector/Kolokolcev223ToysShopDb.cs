@@ -5,13 +5,13 @@ using WpfApp6.Models;
 
 namespace WpfApp6.DbConnector;
 
-public partial class Kolokolcev223ToysShopDbContext : DbContext
+public partial class Kolokolcev223ToysShopDb : DbContext
 {
-    public Kolokolcev223ToysShopDbContext()
+    public Kolokolcev223ToysShopDb()
     {
     }
 
-    public Kolokolcev223ToysShopDbContext(DbContextOptions<Kolokolcev223ToysShopDbContext> options)
+    public Kolokolcev223ToysShopDb(DbContextOptions<Kolokolcev223ToysShopDb> options)
         : base(options)
     {
     }
@@ -26,11 +26,9 @@ public partial class Kolokolcev223ToysShopDbContext : DbContext
 
     public virtual DbSet<Payment> Payments { get; set; }
 
-    public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<Vkuso4kaSotrudniki> Vkuso4kaSotrudnikis { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -142,20 +140,20 @@ public partial class Kolokolcev223ToysShopDbContext : DbContext
                 .HasConstraintName("Payment_User_userID_fk");
         });
 
-        modelBuilder.Entity<Product>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("products_pk");
+        //modelBuilder.Entity<Product>(entity =>
+        //{
+        //    entity.HasKey(e => e.Id).HasName("products_pk");
 
-            entity.ToTable("products");
+        //    entity.ToTable("products");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Amount).HasColumnName("amount");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.Price).HasColumnName("price");
-            entity.Property(e => e.Rating).HasColumnName("rating");
-        });
+        //    entity.Property(e => e.Id).HasColumnName("id");
+        //    entity.Property(e => e.Amount).HasColumnName("amount");
+        //    entity.Property(e => e.Name)
+        //        .HasMaxLength(50)
+        //        .HasColumnName("name");
+        //    entity.Property(e => e.Price).HasColumnName("price");
+        //    entity.Property(e => e.Rating).HasColumnName("rating");
+        //});
 
         modelBuilder.Entity<User>(entity =>
         {
@@ -183,27 +181,27 @@ public partial class Kolokolcev223ToysShopDbContext : DbContext
             entity.Property(e => e.Sex)
                 .HasMaxLength(10)
                 .HasColumnName("sex");
-        });
+        }); }
 
-        modelBuilder.Entity<Vkuso4kaSotrudniki>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("vkuso4ka_sotrudniki_pk");
+    //    modelBuilder.Entity<Vkuso4kaSotrudniki>(entity =>
+    //    {
+    //        entity.HasKey(e => e.Id).HasName("vkuso4ka_sotrudniki_pk");
 
-            entity.ToTable("vkuso4ka_sotrudniki");
+    //        entity.ToTable("vkuso4ka_sotrudniki");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Age).HasColumnName("age");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("name");
-            entity.Property(e => e.Rating).HasColumnName("rating");
-            entity.Property(e => e.Salary).HasColumnName("salary");
-            entity.Property(e => e.Sex).HasColumnName("sex");
-            entity.Property(e => e.Smena).HasColumnName("smena");
-        });
+    //        entity.Property(e => e.Id).HasColumnName("id");
+    //        entity.Property(e => e.Age).HasColumnName("age");
+    //        entity.Property(e => e.Name)
+    //            .HasMaxLength(50)
+    //            .HasColumnName("name");
+    //        entity.Property(e => e.Rating).HasColumnName("rating");
+    //        entity.Property(e => e.Salary).HasColumnName("salary");
+    //        entity.Property(e => e.Sex).HasColumnName("sex");
+    //        entity.Property(e => e.Smena).HasColumnName("smena");
+    //    });
 
-        OnModelCreatingPartial(modelBuilder);
-    }
+    //    OnModelCreatingPartial(modelBuilder);
+    //}
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
